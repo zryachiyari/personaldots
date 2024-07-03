@@ -80,44 +80,67 @@ Only follow these steps after using the bootable drive.
 
 ```
 First part:
-video=1920x1080
-setfont ter-128n
-configure networking as needed (skip this if you're using ethernet)
+
 sudo -i
-lsblk (check info about partitions and the device you want to use for the installation)
-gdisk /dev/vda (change according to your system, for me it's /dev/nvme0n1)
-then configure 600M type ef00, rest ext4 type 8300 as described below
-Type "n" to make a new partition, choose the partition number, first sector can be default but last sector should be 600M. Hex code for EFI is ef00.
-Now type n again to make another partition, this time we'll leave everything as default. After finishing these steps, make sure to write it to the disk by typing "w".
-lsblk
-mkfs.fat -F 32 -n boot /dev/vda1 (Format the partitions)
-mkfs.ext4 -L nixos /dev/vda2
-mount /dev/disk/by-label/nixos /mnt (Mount partitions)
-mkdir /mnt/boot (Create a directory for boot)
-mount /dev/disk/by-label/boot /mnt/boot
+
+lsblk -f (find info about partitions and the device you want to use for the installation)
+
+gdisk /dev/[drive] (change according to your system, for me it's /dev/nvme0n1)
+
+#time to config drives 
+
+Type "n" to make a new partition, choose the partition number, leave first sector alone, but last sector should be 600M. enter the hex code for EFI it is ef00.
+
+Now type n again to make another partition, this time we'll leave everything as default. So spam enter. After finishing these steps, make sure to write it to the disk by typing "w".
+
+lsblk -f again, make sure everything is correctly wrote, you should see two pations numbered accordingly.
+
+# Now we format the partitions we just made.
+
+mkfs.fat -F 32 -n BOOT /dev/[your drive, partition one.]
+
+mkfs.ext4 -L NIXOS /dev/[your drive, partition two.]
+
+# Now we mount these bad boys.
+
+mount /dev/disk/by-label/NIXOS /mnt
+mkdir /mnt/boot 
+mount /dev/disk/by-label/BOOT /mnt/boot
 ```
 
-After mounting the partitions, you can move to the second part...
+After creating and mounting the partitions, you can move to the second part... great job so far!!! <3
 
 ```
-# go inside a nix shell with the specified programs
+# Enter a nix shell with the specified programs, you should use neovim to edit my dots to personalize stuff.
+
 nix-shell -p git nixUnstable neovim
-# create this folder if necessary
+
+# Create this folder if necessary
+
 mkdir -p /mnt/etc/
-# clone the repo
-git clone https://github.com/redyf/nixdots.git /mnt/etc/nixos --recurse-submodules
-# remove this file
-rm /mnt/etc/nixos/hosts/redyf/hardware-configuration.nix
-# generate the config and take some files
+
+# clone my repo
+
+git clone https://github.com/zryachiy/personaldots.git /mnt/etc/nixos --recurse-submodules
+
+# remove my hardware config file
+
+rm /mnt/etc/nixos/hosts/ari/hardware-configuration.nix
+
+# generate a new hardware config just for you!
+
 nixos-generate-config --root /mnt
 rm /mnt/etc/nixos/configuration.nix
-mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/redyf/
-# make sure you're in this path
+mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/ari/
+
+# now move to this path
 cd /mnt/etc/nixos
-# Install my config:
-nixos-install --flake '.#redyf'
-# Obs:
-If you'd like to use my config as a template, all you need to do is replace "redyf" with your username.
+
+# now just unstall my config!:
+nixos-install --flake '.#ari'
+
+
+remember! if you'd like to use my config as a template, all you need to do is replace "ari" with your username!
 ```
 
 </details>
@@ -130,5 +153,5 @@ If you'd like to use my config as a template, all you need to do is replace "red
 ## Conclusion
 
 That should be all!
-
+Thank you to user "redyf" as this is heavily inspired by their template.
 The code is licensed under the MIT license, so you can use or distribute the code however you like.
