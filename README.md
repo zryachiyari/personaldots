@@ -24,7 +24,7 @@
 ❄️ NixOS dotfiles ❄️
 </h1>
 </div>
-<h2 align="center">NixOS system configuration. Feel free to explore!</h2>
+<h2 align="center">NixOS system configu.</h2>
 
 ```mint
 ⠀⠀   🌸 Setup / Hyprland 🌸
@@ -34,9 +34,9 @@
  ├─ Browser -> Firefox
  ├─ Shell   -> ZSH
  ╰─ Resource Monitor -> Btop
- ╭─ Model -> DELL XPS 8940
- ├─ CPU   -> Intel i5-10400f @ 4.3GHz
- ├─ GPU   -> NVIDIA GeForce GTX 1650 SUPER
+ ╭─ MB -> HP Omen MB
+ ├─ CPU   -> Ryzen 5800x
+ ├─ GPU   -> NVIDIA RTX-3060TI & RTX 4080 
  ╰─ Resolution -> 1920x1080@165hz
  ╭─ WM       -> Hyprland
  ├─ Terminal -> Wezterm
@@ -80,15 +80,9 @@ iwctl --passphrase [passphrase] station [device] connect [SSID]
 
 ## Installation
 
-I'll guide you through the Installation, but first make sure to download the Minimal ISO image available at [NixOS](https://nixos.org/download#nixos-iso) and make a bootable drive with it. I suggest using [Rufus](https://rufus.ie/en/) for the task as it's a great software,
-and an ethernet cable to make things easier. We shall begin!
-
-<details>
-    <summary>Installation Steps</summary>
-
 <strong>
 
-Only follow these steps after using the bootable drive, changing BIOS boot priority and getting into the installation!
+Only follow these steps after using the bootable drive.
 
 </strong>
 
@@ -137,38 +131,12 @@ If you'd like to use my config as a template, all you need to do is replace "red
 </details>
 <hr>
 
-Disko is also available for formatting partitions (Only for advanced users)
-
-<details>
-<summary>Disko</summary>
-
-```
-If you'd saved this configuration in ./disks/default.nix, and wanted to create a disk named /dev/nvme0n1, you would run the following command to partition, format and mount the disk.
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disks/default.nix --arg device '/dev/nvme0n1'
-```
-
 </details>
 
-<hr>
 
-Credits for the installation section goes to [Stephenstechtalks](https://github.com/stephenstechtalks) and [AlphaTechnolog](https://github.com/AlphaTechnolog) as they helped a lot with their installation guides.
-
-## Shoutout to:
-
-- [AlphaTechnolog](https://github.com/AlphaTechnolog/nixdots)
-- [Eriim's](https://github.com/erictossell/nixflakes)
-- [IogaMaster](https://github.com/IogaMaster)
-- [linuxmobile](https://github.com/linuxmobile)
-- [NotAShelf](https://github.com/NotAShelf/nyx)
-- [notusknot](https://github.com/notusknot)
-- [Siduck76](https://github.com/siduck76/nvchad/)
-- [Sioodmy](https://github.com/sioodmy/dotfiles)
-- [ZerotoNix](https://zero-to-nix.com)
-
-<hr>
 
 ## Conclusion
 
-That should be all! If you have any problem, feel free to make an issue in the github repo. (https://github.com/Redyf/nixdots/issues).
+That should be all!
 
-The code is licensed under the MIT license, so you can use or distribute the code however you like. If you have any questions, contact me on Discord: `redyf`.
+The code is licensed under the MIT license, so you can use or distribute the code however you like.

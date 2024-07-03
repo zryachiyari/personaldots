@@ -1,5 +1,5 @@
 {
-  description = "Redyf's Flake";
+  description = "ari's Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -55,7 +55,7 @@
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
-      redyf =
+      ari =
         nixpkgs.lib.nixosSystem
         {
           system = "x86_64-linux";
@@ -67,14 +67,14 @@
               ;
           };
           modules = [
-            ./hosts/redyf/configuration.nix
+            ./hosts/ari/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = false;
                 extraSpecialArgs = {inherit inputs disko;};
-                users.redyf = ./home/redyf/home.nix;
+                users.ari = ./home/ari/home.nix;
                 backupFileExtension = "backup";
               };
             }

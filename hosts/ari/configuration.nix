@@ -83,7 +83,7 @@ in {
   };
 
   # Configure console keymap
-  console = {keyMap = "br-abnt2";};
+  console = {keyMap = "us";};
 
   networking = {
     networkmanager.enable = true;
@@ -92,7 +92,7 @@ in {
     dhcpcd.wait = "background";
     # avoid checking if IP is already taken to boot a few seconds faster
     dhcpcd.extraConfig = "noarp";
-    hostName = "redyf"; # Define your hostname.
+    hostName = "nixos"; # Define your hostname.
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
@@ -101,9 +101,9 @@ in {
 
   users = {
     users = {
-      redyf = {
+      ari = {
         isNormalUser = true;
-        description = "redyf";
+        description = "ari";
         initialPassword = "123456";
         shell = pkgs.zsh;
         extraGroups = ["networkmanager" "wheel" "input" "docker" "kvm" "libvirtd"];
@@ -120,7 +120,7 @@ in {
       enable = true;
       extraRules = [
         {
-          users = ["redyf"];
+          users = ["ari"];
           keepEnv = true;
           persist = true;
         }
@@ -140,7 +140,7 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/redyf/nixdots";
+      flake = "/home/ari/nixdots";
     };
   };
 
@@ -204,17 +204,17 @@ in {
   time.timeZone = "America/Bahia";
 
   i18n = {
-    defaultLocale = "pt_BR.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ADDRESS = "pt_BR.UTF-8";
-      LC_IDENTIFICATION = "pt_BR.UTF-8";
-      LC_MEASUREMENT = "pt_BR.UTF-8";
-      LC_MONETARY = "pt_BR.UTF-8";
-      LC_NAME = "pt_BR.UTF-8";
-      LC_NUMERIC = "pt_BR.UTF-8";
-      LC_PAPER = "pt_BR.UTF-8";
-      LC_TELEPHONE = "pt_BR.UTF-8";
-      LC_TIME = "pt_BR.UTF-8";
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
     };
   };
 
@@ -303,7 +303,7 @@ in {
       };
       xkb = {
         variant = "";
-        layout = "br";
+        layout = "us";
       };
       videoDrivers = ["nvidia"];
     };
@@ -312,7 +312,7 @@ in {
     autorandr = {
       enable = true;
       profiles = {
-        redyf = {
+        ari = {
           config = {
             DP-0 = {
               enable = true;
