@@ -61,7 +61,7 @@ nh os switch
 OR
 
 ```
-sudo nixos-rebuild switch --flake '.#redyf'
+sudo nixos-rebuild switch --flake '.#ari'
 ```
 
 - Connect to internet (Change what's inside the brackets with your info).
