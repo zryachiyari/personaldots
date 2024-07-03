@@ -16,7 +16,7 @@
 ❄️ NixOS dotfiles ❄️
 </h1>
 </div>
-<h2 align="center">NixOS system configu.</h2>
+<h2 align="center">NixOS system configuration.</h2>
 
 ```mint
 ⠀⠀   🌸 Setup / Hyprland 🌸
